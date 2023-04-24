@@ -10,7 +10,7 @@ on:
     branches: [ master ]
 
 jobs:
-  Build-Java-CreateDockerImage-PushDockerRepo:
+  BuildJava-BuildPushDocker:
 
     runs-on: ubuntu-latest
     
@@ -45,6 +45,12 @@ jobs:
       - name: start minikube
         id: minikube
         uses: medyagh/setup-minikube@latest
+
+      - name: Get k8s component status
+        run: kubectl get componentstatuses
+
+      - name: List Nodes
+        run: kubectl get nodes minikube
       
       - name: kubectl deployment
         run: kubectl create deployment gradle-minikube --image=salazro69/demo:latest --replicas=3
@@ -54,6 +60,9 @@ jobs:
 
       - name: kubectl services
         run: kubectl get services
+
+      - name: kubectl Ingress
+        run: kubectl get ingress
       
       - name: kubectl pods
         run: kubectl get pods
