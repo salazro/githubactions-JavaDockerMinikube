@@ -42,33 +42,36 @@ jobs:
     needs: BuildJava-BuildPushDocker
 
     steps:
-      - name: start minikube
+      - name: Start Minikube
         id: minikube
         uses: medyagh/setup-minikube@latest
 
-      - name: Get k8s component status
+      - name: Get k8s Component Status
         run: kubectl get componentstatuses
 
-      - name: List Nodes
+      - name: Check the health of the API endpoints
+        run: kubectl get --raw='/readyz?verbose'
+ 
+      - name: Check Node Status
         run: kubectl get nodes
 
       - name: Describe Nodes
         run: kubectl describe nodes minikube
       
-      - name: kubectl deployment
+      - name: Create Deployment
         run: kubectl create deployment gradle-minikube --image=salazro69/demo-app:latest --replicas=3
 
-      - name: kubectl replicasets
+      - name: Check ReplicaSets
         run: kubectl get replicasets
 
-      - name: kubectl services
+      - name: Check Services
         run: kubectl get services
 
       - name: Waiting for container creation (delay)
         run: sleep 20s
         shell: bash
       
-      - name: kubectl pods
+      - name: Check Pod Status
         run: kubectl get pods
     
          
