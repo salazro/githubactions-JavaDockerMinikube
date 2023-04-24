@@ -45,12 +45,17 @@ jobs:
       - name: start minikube
         id: minikube
         uses: medyagh/setup-minikube@latest
-      # now you can run kubectl to see the pods in the cluster
+      
       - name: kubectl deployment
-        run: kubectl create deployment gradle-minikube --image=salazro69/demo:latest
+        run: kubectl create deployment gradle-minikube --image=salazro69/demo:latest --replicas=3
+
       - name: kubectl replicasets
         run: kubectl get replicasets
+
+      - name: kubectl services
+        run: kubectl get services
+      
       - name: kubectl pods
         run: kubectl get pods
-
+    
          
