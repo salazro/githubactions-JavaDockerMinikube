@@ -63,6 +63,10 @@ jobs:
 
       - name: kubectl Ingress
         run: kubectl get ingress
+
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
       
       - name: kubectl pods
         run: kubectl get pods
