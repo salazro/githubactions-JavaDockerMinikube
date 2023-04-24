@@ -39,7 +39,7 @@ jobs:
 
   Deploy-In-Minikube:
     runs-on: ubuntu-latest
-    needs: Build-Java-CreateDockerImage-PushDockerRepo
+    needs: BuildJava-BuildPushDocker
 
     steps:
       - name: start minikube
