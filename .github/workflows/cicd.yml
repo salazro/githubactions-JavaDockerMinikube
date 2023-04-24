@@ -10,7 +10,7 @@ on:
     branches: [ master ]
 
 jobs:
-  Build-Java:
+  build-java:
 
     runs-on: ubuntu-latest
     
@@ -28,17 +28,12 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
 
-  Build-and-Push-Docker-Image:
-    runs-on: ubuntu-latest
-    name: Build and Push Docker Image
-    needs: Build-Java
-
-    steps:
-      - uses: mr-smithers-excellent/docker-build-push@v4
-        with:
-          image: salazro69/demo-app
-          tag: latest
-          registry: docker.io
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Build and Push Docker Image
+      uses: mr-smithers-excellent/docker-build-push@v4
+      with:
+        image: salazro69/demo-app
+        tag: latest
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
          
