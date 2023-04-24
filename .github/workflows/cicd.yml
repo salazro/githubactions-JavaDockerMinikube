@@ -53,7 +53,7 @@ jobs:
         run: kubectl get nodes minikube
       
       - name: kubectl deployment
-        run: kubectl create deployment gradle-minikube --image=salazro69/demo:latest --replicas=3
+        run: kubectl create deployment gradle-minikube --image=salazro69/demo-app:latest --replicas=3
 
       - name: kubectl replicasets
         run: kubectl get replicasets
@@ -64,7 +64,7 @@ jobs:
       - name: kubectl Ingress
         run: kubectl get ingress
 
-      - name: Sleep for 30 seconds
+      - name: Waiting for container creation (delay)
         run: sleep 30s
         shell: bash
       
