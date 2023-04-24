@@ -73,6 +73,6 @@ jobs:
         shell: bash
       
       - name: Check Pod Status
-        run: kubectl get pods
+        run: kubectl get pod -o wide
     
          
