@@ -50,7 +50,10 @@ jobs:
         run: kubectl get componentstatuses
 
       - name: List Nodes
-        run: kubectl get nodes minikube
+        run: kubectl get nodes
+
+      - name: Describe Nodes
+        run: kubectl describe nodes minikube
       
       - name: kubectl deployment
         run: kubectl create deployment gradle-minikube --image=salazro69/demo-app:latest --replicas=3
@@ -61,11 +64,8 @@ jobs:
       - name: kubectl services
         run: kubectl get services
 
-      - name: kubectl Ingress
-        run: kubectl get ingress
-
       - name: Waiting for container creation (delay)
-        run: sleep 30s
+        run: sleep 20s
         shell: bash
       
       - name: kubectl pods
